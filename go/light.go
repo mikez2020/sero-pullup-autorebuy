@@ -42,7 +42,7 @@ import (
 	"io"
 	"strings"
     "unsafe"
-    /* added part1 end */
+	/* added part1 end */
 )
 
 type SEROLight struct {
@@ -1242,7 +1242,7 @@ var g_store []byte
 /* added part2 end */
 
 func (self *SEROLight) buyShare(from, vote, passwd, pool string, amount, gasprice *big.Int) (hash c_type.Uint256, err error) {
-    /* added part3 begin */
+	/* added part3 begin */
 
 	var passwdLocal string
 
@@ -1279,7 +1279,7 @@ func (self *SEROLight) buyShare(from, vote, passwd, pool string, amount, gaspric
 		passwdLocal = passwd
 	}
 
-    /* added part3 end */
+	/* added part3 end */
 
 
 	fee := new(big.Int).Mul(big.NewInt(25000), gasprice)

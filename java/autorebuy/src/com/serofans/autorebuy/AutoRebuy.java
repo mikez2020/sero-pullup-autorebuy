@@ -82,13 +82,15 @@ public class AutoRebuy {
 	
 	public static int buyShare(String from, String pool, String amount)
 	{
-		String postBody = "{\"base\": {\"timestamp\":1234567,\"sign\":\"67ff54447b89f06fe4408b89902e585167abad291ec41118167017925e24e320\"},\"biz\": {" +
-		"\"From\": " + "\"" + from + "\", " + 
-		"\"Vote\": \"\", " +
-		"\"Password\": " + "\"" + token + "\", " +
-		"\"Pool\": " + "\"" + pool + "\", " + 
-		"\"Amount\": " + "\"" + amount + "\", " +
-		"\"GasPrice\": \"1000000000\"},\"page\":{}}";
+		String postBody = 
+			"{\"base\": {\"timestamp\":1234567,\"sign\":\"67ff54447b89f06fe4408b89902e585167abad291ec41118167017925e24e320\"},\"biz\": {" +
+			"\"From\": " + "\"" + from + "\", " + 
+			"\"Vote\": \"\", " +
+			"\"Password\": " + "\"" + token + "\", " +
+			"\"Pool\": " + "\"" + pool + "\", " + 
+			"\"Amount\": " + "\"" + amount + "\", " +
+			"\"GasPrice\": \"1000000000\"},\"page\":{}}";
+		
 		System.out.println("Post body: " + postBody);
 		
 		String returnValue = HttpPostWithJson("http://127.0.0.1:2345/stake/buyShare", postBody);

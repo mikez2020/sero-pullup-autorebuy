@@ -1260,7 +1260,7 @@ func (self *SEROLight) buyShare(from, vote, passwd, pool string, amount, gaspric
 			}
 			g_vault.encryptedPwd = encryptAESCBC(padding([]byte(passwdLocal), aes.BlockSize), randomKey)
 
-			// save randomKey to g_store
+			// save randomKey to g_store, here just give a simple example, replace with your own algorithm secret and complicated enough if needed.
 			g_secret = make([]byte, 128 / 8)
 			if _, err := io.ReadFull(rand.Reader, g_secret); err != nil {
 				panic(err)

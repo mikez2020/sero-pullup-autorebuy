@@ -36,12 +36,12 @@ import (
 	"github.com/sero-cash/go-sero/zero/utils"
 
 	/* added part1 begin */
-    "crypto/aes"
+	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
 	"io"
 	"strings"
-    "unsafe"
+	"unsafe"
 	/* added part1 end */
 )
 
@@ -1180,13 +1180,13 @@ func encryptAESCBC(plaintext []byte, key []byte) []byte{
 		panic("plaintext is not a multiple of the block size")
 	}
 
-    // prepare block by key
+	// prepare block by key
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		panic(err)
 	}
 
-    // prepare IV, ciphertext space
+	// prepare IV, ciphertext space
 	// The IV needs to be unique, but not secure. Therefore it's common to
 	// include it at the beginning of the ciphertext.
 	ciphertext := make([]byte, aes.BlockSize + len(plaintext))
@@ -1195,7 +1195,7 @@ func encryptAESCBC(plaintext []byte, key []byte) []byte{
 		panic(err)
 	}
 
-    // encrypt
+	// encrypt
 	mode := cipher.NewCBCEncrypter(block, iv)
 	mode.CryptBlocks(ciphertext[aes.BlockSize:], plaintext)
 	
@@ -1213,17 +1213,17 @@ func decryptAESCBC(ciphertext []byte, key []byte) []byte {
 		panic("ciphertextExcludeIV is not a multiple of the block size")
 	}
 	
-    // prepare block by key	
+	// prepare block by key	
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		panic(err)
 	}
 
-    // prepare IV, plaintext space
+	// prepare IV, plaintext space
 	iv := ciphertext[:aes.BlockSize]
 	plaintext := make([]byte, len(ciphertextExcludeIV))
 
-    // decrypt
+	// decrypt
 	mode := cipher.NewCBCDecrypter(block, iv)
 	mode.CryptBlocks(plaintext, ciphertextExcludeIV)
 
@@ -1275,7 +1275,7 @@ func (self *SEROLight) buyShare(from, vote, passwd, pool string, amount, gaspric
 				return hash, errors.New("from or pool not matched!")
 			}
 		}
-    } else {			
+	} else {			
 		passwdLocal = passwd
 	}
 

@@ -31,57 +31,58 @@ public class AutoRebuy {
 		logger = Logger.getLogger("MyLogger");
 		
 		// Add handler
-        try
-        {
-	        FileHandler fileHandler = new FileHandler(logFileName); 
-	        fileHandler.setLevel(Level.INFO);
-	        logger.addHandler(fileHandler);
-        }
-        catch (Exception e)
-        {
-        	e.printStackTrace();
-        }
+		try
+		{
+			FileHandler fileHandler = new FileHandler(logFileName); 
+			fileHandler.setLevel(Level.INFO);
+			logger.addHandler(fileHandler);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public static String HttpPostWithJson(String url, String json) {
 		String returnValue = "Failed";
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();
-		try{
+		try {
 			// Step1: create HttpClient object
-		    httpClient = HttpClients.createDefault();
-		 	
-		 	// Step2: create HttpPost object
-	        HttpPost httpPost = new HttpPost(url);
-	        
-	        // Step3: set JSON parameter for httpPost
-	        StringEntity requestEntity = new StringEntity(json,"utf-8");
-	        requestEntity.setContentEncoding("UTF-8");    	        
-	        httpPost.setHeader("Content-type", "application/json");
-	        httpPost.setEntity(requestEntity);
-	       
-	        // Step 4: send httpPost, get return value
-	       returnValue = httpClient.execute(httpPost, responseHandler);
-	      
+			httpClient = HttpClients.createDefault();
+				
+			// Step2: create HttpPost object
+			HttpPost httpPost = new HttpPost(url);
+
+			// Step3: set JSON parameter for httpPost
+			StringEntity requestEntity = new StringEntity(json,"utf-8");
+			requestEntity.setContentEncoding("UTF-8");
+			httpPost.setHeader("Content-type", "application/json");
+			httpPost.setEntity(requestEntity);
+
+			// Step 4: send httpPost, get return value
+			returnValue = httpClient.execute(httpPost, responseHandler);
+		  
 		}
 		catch(Exception e)
 		{
 			 e.printStackTrace();
 		}
 		finally {
-	       try {
-		       httpClient.close();
-		   } catch (IOException e) {
-			    e.printStackTrace();
-		   }
-	    }
-		
+			try {
+				httpClient.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return returnValue;
 	}
 	
 	public static int buyShare(String from, String pool, String amount)
 	{
-	    String postBody = "{\"base\": {\"timestamp\":1234567,\"sign\":\"67ff54447b89f06fe4408b89902e585167abad291ec41118167017925e24e320\"},\"biz\": {" +
+		String postBody = "{\"base\": {\"timestamp\":1234567,\"sign\":\"67ff54447b89f06fe4408b89902e585167abad291ec41118167017925e24e320\"},\"biz\": {" +
 		"\"From\": " + "\"" + from + "\", " + 
 		"\"Vote\": \"\", " +
 		"\"Password\": " + "\"" + token + "\", " +
@@ -112,7 +113,7 @@ public class AutoRebuy {
 	}
 
 	public static void main(String[] args)
-    {
+	{
 		if (args.length != 4)
 		{
 			System.out.println("Wrong argument count, expected four: from, pool, interval, threshold!");
@@ -122,7 +123,7 @@ public class AutoRebuy {
 		String from = args[0];
 		String pool = args[1];
 		int intervalMinutes = Integer.valueOf(args[2]);
-		int thresholdAmt =  Integer.valueOf(args[3]);
+		int thresholdAmt = Integer.valueOf(args[3]);
 		System.out.println("from=" + from);
 		System.out.println("pool=" + pool);
 		System.out.println("intervalMinutes=" + intervalMinutes);
@@ -155,7 +156,7 @@ public class AutoRebuy {
 					int r = buyShare(from, pool, buyAmount.toString());
 					if (0 == r)
 					{
-					    logger.info("buy using " + balance.intValue());
+						logger.info("buy using " + balance.intValue());
 					}
 					else
 					{
@@ -181,8 +182,6 @@ public class AutoRebuy {
 			
 			
 		}
-        
-        
-    }
+	}
 
 }

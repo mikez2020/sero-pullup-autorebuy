@@ -45,7 +45,7 @@ Four mandatory arguments for the java client :
 
 - from: PK address (not the PKr) which is included in the key file name.
 - pool: to which pool you buy the share
-- interval: interval for periodically check the SERO balance, in minutes.
+- interval: interval for periodically check the SERO balance, in minutes. In testing phase, you can set a short interval, and in practice, several hours could be a balanced value.
 - threshold: balance threshold for trigger the re-buying.
 
 ## Risks
